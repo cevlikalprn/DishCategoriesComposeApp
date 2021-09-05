@@ -11,11 +11,11 @@ import kotlinx.coroutines.launch
 
 class DishCategoriesViewModel(private val repository: DishesRepository = DishesRepository()): ViewModel() {
 
-    val dishesState: MutableState<List<Dish>> = mutableStateOf(emptyList<Dish>())
+    val dishState: MutableState<List<Dish>> = mutableStateOf(emptyList<Dish>())
 
     init {
         viewModelScope.launch(Dispatchers.IO){
-            dishesState.value = getDishes()
+            dishState.value = getDishes()
         }
     }
 
