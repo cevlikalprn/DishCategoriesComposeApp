@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
@@ -47,7 +48,7 @@ fun DishCategoryCard(dish: Dish) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            DishPicture(dish.dishCategoryImageUrl)
+            DishPicture(dish.dishCategoryImageUrl, 120.dp)
             ShortDishDetails(dish.dishCategory, dish.dishCategoryDescription)
         }
 
@@ -55,12 +56,12 @@ fun DishCategoryCard(dish: Dish) {
 }
 
 @Composable
-fun DishPicture(dishImageUrl: String) {
+fun DishPicture(dishImageUrl: String, dishImageSize: Dp) {
     Image(
         painter = rememberImagePainter(dishImageUrl),
         contentDescription = "dish image",
         modifier = Modifier
-            .size(120.dp)
+            .size(dishImageSize)
     )
 }
 
