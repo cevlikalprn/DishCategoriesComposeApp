@@ -1,12 +1,13 @@
 package com.cevlikalprn.dishcategoriesapp.details
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,14 +38,16 @@ fun DishCategoryDetailsScreen(navController: NavController ,dishId: Int?) {
             iconClickAction = {
                 navController.navigateUp()
             })
-    }) {
+    }, ) {
 
     }
     Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentHeight(align = Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.padding(top= 48.dp))
         DishPicture(
             dishImageUrl = catchDish.dishCategoryImageUrl,
             dishImageSize = 240.dp
@@ -69,6 +72,7 @@ fun DishCategoryDescription(dishCategory: String, dishDescription: String) {
         Text(
             text = dishDescription,
             style = MaterialTheme.typography.body1,
+            modifier = Modifier.verticalScroll(rememberScrollState())
         )
     }
 }
