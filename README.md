@@ -11,7 +11,7 @@ The application is briefly a food application. In the app, we have dish categori
   
 - Tech/Tools <br>
   - Compose <br>
-  - Navigation for navigation between composable(screens) <br>
+  - Navigation for navigation between composables (screens) <br>
   - ViewModel for manage UI state <br>
   - Retrofit for network operations <br>
   - Coroutines for async operations <br>
