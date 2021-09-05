@@ -31,7 +31,12 @@ fun DishCategoriesScreen(navController: NavController) {
     val viewModel: DishCategoriesViewModel = viewModel()
     val dishes = viewModel.dishState.value
 
-    Scaffold(topBar = { MyAppBar(title = "Dish Categories", icon = Icons.Default.Home) }) {
+    Scaffold(topBar = {
+        MyAppBar(
+            title = "Dish Categories",
+            icon = Icons.Default.Home,
+            iconClickAction = {})
+    }) {
         LazyColumn() {
             items(dishes) { dish ->
                 DishCategoryCard(dish, navController)
@@ -44,7 +49,9 @@ fun DishCategoriesScreen(navController: NavController) {
 fun DishCategoryCard(dish: Dish, navController: NavController) {
     Card(
         modifier = Modifier
-            .clickable { navController.navigate("dish_category_details_screen/${dish.dishCategoryId}") }
+            .clickable {
+                navController.navigate("dish_category_details_screen/${dish.dishCategoryId}")
+            }
             .fillMaxWidth()
             .padding(16.dp), elevation = 8.dp, shape = RoundedCornerShape(8.dp)
     ) {
@@ -101,12 +108,14 @@ fun ShortDishDetails(dishCategory: String, dishCategoryDescription: String) {
 }
 
 @Composable
-fun MyAppBar(title: String, icon: ImageVector) {
+fun MyAppBar(title: String, icon: ImageVector, iconClickAction: () -> Unit) {
     TopAppBar(title = { Text(text = title) }, navigationIcon = {
         Icon(
             imageVector = icon,
             contentDescription = "icon",
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier
+                .clickable(onClick = iconClickAction)
+                .padding(start = 8.dp)
         )
     }, backgroundColor = Color.Green)
 }

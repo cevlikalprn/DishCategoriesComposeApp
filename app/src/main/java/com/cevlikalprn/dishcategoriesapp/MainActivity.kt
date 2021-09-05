@@ -45,7 +45,7 @@ fun MyAppNavigation() {
                 })
             )
         ) { entry ->
-            DishCategoryDetailsScreen(entry.arguments?.getInt("dishId"))
+            DishCategoryDetailsScreen(navController, entry.arguments?.getInt("dishId"))
         }
     }
 }

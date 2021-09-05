@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.cevlikalprn.dishcategoriesapp.dishes.DishCategoriesViewModel
 import com.cevlikalprn.dishcategoriesapp.dishes.DishPicture
 import com.cevlikalprn.dishcategoriesapp.dishes.MyAppBar
@@ -19,7 +20,7 @@ import com.cevlikalprn.dishcategoriesapp.util.Constants
 
 
 @Composable
-fun DishCategoryDetailsScreen(dishId: Int?) {
+fun DishCategoryDetailsScreen(navController: NavController ,dishId: Int?) {
 
     var catchDish = Constants.tempDish
     val viewModel: DishCategoriesViewModel = viewModel()
@@ -29,7 +30,14 @@ fun DishCategoryDetailsScreen(dishId: Int?) {
             catchDish = dish
         }
     }
-    Scaffold(topBar = { MyAppBar(title = "Dish Details", icon = Icons.Default.ArrowBack)}) {
+    Scaffold(topBar = {
+        MyAppBar(
+            title = "Dish Details",
+            icon = Icons.Default.ArrowBack,
+            iconClickAction = {
+                navController.navigateUp()
+            })
+    }) {
 
     }
     Column(
@@ -41,14 +49,18 @@ fun DishCategoryDetailsScreen(dishId: Int?) {
             dishImageUrl = catchDish.dishCategoryImageUrl,
             dishImageSize = 240.dp
         )
-        DishCategoryDescription(catchDish.dishCategory ,catchDish.dishCategoryDescription)
+        DishCategoryDescription(catchDish.dishCategory, catchDish.dishCategoryDescription)
     }
 
 }
 
 @Composable
-fun DishCategoryDescription(dishCategory: String ,dishDescription: String) {
-    Column(modifier = Modifier.padding(24.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+fun DishCategoryDescription(dishCategory: String, dishDescription: String) {
+    Column(
+        modifier = Modifier.padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = dishCategory,
             style = MaterialTheme.typography.h5,
