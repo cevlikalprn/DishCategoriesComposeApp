@@ -8,6 +8,10 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.cevlikalprn.dishcategoriesapp.dishes.DishCategoriesScreen
 import com.cevlikalprn.dishcategoriesapp.ui.theme.DishCategoriesAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,24 +19,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DishCategoriesAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                MyAppNavigation()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MyAppNavigation() {
+    DishCategoriesScreen()
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     DishCategoriesAppTheme {
-        Greeting("Android")
+
     }
 }
