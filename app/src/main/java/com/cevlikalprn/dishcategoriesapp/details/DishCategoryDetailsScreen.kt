@@ -2,7 +2,11 @@ package com.cevlikalprn.dishcategoriesapp.details
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -10,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.cevlikalprn.dishcategoriesapp.dishes.DishCategoriesViewModel
 import com.cevlikalprn.dishcategoriesapp.dishes.DishPicture
+import com.cevlikalprn.dishcategoriesapp.dishes.MyAppBar
 import com.cevlikalprn.dishcategoriesapp.util.Constants
 
 
@@ -24,7 +29,9 @@ fun DishCategoryDetailsScreen(dishId: Int?) {
             catchDish = dish
         }
     }
+    Scaffold(topBar = { MyAppBar(title = "Dish Details", icon = Icons.Default.ArrowBack)}) {
 
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

@@ -15,6 +15,8 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -29,12 +31,13 @@ fun DishCategoriesScreen(navController: NavController) {
     val viewModel: DishCategoriesViewModel = viewModel()
     val dishes = viewModel.dishState.value
 
-    LazyColumn() {
-        items(dishes) { dish ->
-            DishCategoryCard(dish, navController)
+    Scaffold(topBar = { MyAppBar(title = "Dish Categories", icon = Icons.Default.Home) }) {
+        LazyColumn() {
+            items(dishes) { dish ->
+                DishCategoryCard(dish, navController)
+            }
         }
     }
-
 }
 
 @Composable
@@ -70,7 +73,7 @@ fun DishPicture(dishImageUrl: String, dishImageSize: Dp) {
 @Composable
 fun ShortDishDetails(dishCategory: String, dishCategoryDescription: String) {
 
-    var isExpanded by remember { mutableStateOf(false)}
+    var isExpanded by remember { mutableStateOf(false) }
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -97,3 +100,13 @@ fun ShortDishDetails(dishCategory: String, dishCategoryDescription: String) {
 
 }
 
+@Composable
+fun MyAppBar(title: String, icon: ImageVector) {
+    TopAppBar(title = { Text(text = title) }, navigationIcon = {
+        Icon(
+            imageVector = icon,
+            contentDescription = "icon",
+            modifier = Modifier.padding(start = 8.dp)
+        )
+    }, backgroundColor = Color.Green)
+}
