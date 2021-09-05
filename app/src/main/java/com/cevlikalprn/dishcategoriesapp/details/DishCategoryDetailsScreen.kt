@@ -10,11 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cevlikalprn.dishcategoriesapp.dishes.DishPicture
-import com.cevlikalprn.dishcategoriesapp.model.Dish
 
 
 @Composable
-fun DishCategoryDetailsScreen(dish: Dish) {
+fun DishCategoryDetailsScreen() {
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -22,10 +21,10 @@ fun DishCategoryDetailsScreen(dish: Dish) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DishPicture(
-            dishImageUrl = dish.dishCategoryImageUrl,
+            dishImageUrl = "https://www.themealdb.com/images/category/beef.png",
             dishImageSize = 240.dp
         )
-        DishCategoryDescription(dish.dishCategoryDescription)
+        DishCategoryDescription("some texts")
     }
 
 }

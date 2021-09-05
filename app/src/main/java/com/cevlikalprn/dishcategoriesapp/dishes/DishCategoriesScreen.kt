@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
@@ -18,28 +17,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.cevlikalprn.dishcategoriesapp.model.Dish
 
 
 @Composable
-fun DishCategoriesScreen() {
+fun DishCategoriesScreen(navController: NavController) {
 
     val viewModel: DishCategoriesViewModel = viewModel()
     val dishes = viewModel.dishState.value
 
     LazyColumn() {
         items(dishes) { dish ->
-            DishCategoryCard(dish)
+            DishCategoryCard(dish, navController)
         }
     }
 
 }
 
 @Composable
-fun DishCategoryCard(dish: Dish) {
+fun DishCategoryCard(dish: Dish, navController: NavController) {
     Card(
         modifier = Modifier
+            .clickable { navController.navigate("dish_category_details_screen") }
             .fillMaxWidth()
             .padding(16.dp), elevation = 8.dp, shape = RoundedCornerShape(8.dp)
     ) {
