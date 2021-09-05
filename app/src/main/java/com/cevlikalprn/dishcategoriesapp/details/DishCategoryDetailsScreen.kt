@@ -1,6 +1,5 @@
 package com.cevlikalprn.dishcategoriesapp.details
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,23 +9,34 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.cevlikalprn.dishcategoriesapp.dishes.DishCategoriesViewModel
 import com.cevlikalprn.dishcategoriesapp.dishes.DishPicture
-import com.cevlikalprn.dishcategoriesapp.model.Dish
+import com.cevlikalprn.dishcategoriesapp.util.Constants
 
 
 @Composable
 fun DishCategoryDetailsScreen(dishId: Int?) {
-    Log.i("DishDetails", dishId.toString())
+
+    var catchDish = Constants.tempDish
+    val viewModel: DishCategoriesViewModel = viewModel()
+    val dishes = viewModel.dishState.value
+    for (dish in dishes){
+        if (dishId == dish.dishCategoryId){
+            catchDish = dish
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DishPicture(
-            dishImageUrl = "https://www.themealdb.com/images/category/miscellaneous.png",
+            dishImageUrl = catchDish.dishCategoryImageUrl,
             dishImageSize = 240.dp
         )
-        DishCategoryDescription("Alperen Çevlik")
+        DishCategoryDescription(catchDish.dishCategoryDescription)
     }
 
 }
