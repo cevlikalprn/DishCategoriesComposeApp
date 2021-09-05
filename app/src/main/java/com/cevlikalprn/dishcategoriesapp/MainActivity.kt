@@ -38,8 +38,14 @@ fun MyAppNavigation() {
         composable(route = "dish_categories_screen") {
             DishCategoriesScreen(navController = navController)
         }
-        composable(route = "dish_category_details_screen"){
-            DishCategoryDetailsScreen()
+        composable(
+            route = "dish_category_details_screen" + "/{dishId}", arguments = listOf(
+                navArgument("dishId", builder = {
+                    type = NavType.IntType
+                })
+            )
+        ) { entry ->
+            DishCategoryDetailsScreen(entry.arguments?.getInt("dishId"))
         }
     }
 }

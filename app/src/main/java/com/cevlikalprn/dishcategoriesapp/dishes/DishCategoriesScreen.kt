@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
@@ -40,7 +41,7 @@ fun DishCategoriesScreen(navController: NavController) {
 fun DishCategoryCard(dish: Dish, navController: NavController) {
     Card(
         modifier = Modifier
-            .clickable { navController.navigate("dish_category_details_screen") }
+            .clickable { navController.navigate("dish_category_details_screen/${dish.dishCategoryId}") }
             .fillMaxWidth()
             .padding(16.dp), elevation = 8.dp, shape = RoundedCornerShape(8.dp)
     ) {
