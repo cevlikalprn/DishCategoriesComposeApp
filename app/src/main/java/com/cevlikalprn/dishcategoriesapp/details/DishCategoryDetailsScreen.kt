@@ -1,8 +1,6 @@
 package com.cevlikalprn.dishcategoriesapp.details
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,8 +19,8 @@ fun DishCategoryDetailsScreen(dishId: Int?) {
     var catchDish = Constants.tempDish
     val viewModel: DishCategoriesViewModel = viewModel()
     val dishes = viewModel.dishState.value
-    for (dish in dishes){
-        if (dishId == dish.dishCategoryId){
+    for (dish in dishes) {
+        if (dishId == dish.dishCategoryId) {
             catchDish = dish
         }
     }
@@ -36,12 +34,22 @@ fun DishCategoryDetailsScreen(dishId: Int?) {
             dishImageUrl = catchDish.dishCategoryImageUrl,
             dishImageSize = 240.dp
         )
-        DishCategoryDescription(catchDish.dishCategoryDescription)
+        DishCategoryDescription(catchDish.dishCategory ,catchDish.dishCategoryDescription)
     }
 
 }
 
 @Composable
-fun DishCategoryDescription(dishCateGoryDescription: String) {
-    Text(text = dishCateGoryDescription, style = MaterialTheme.typography.body1)
+fun DishCategoryDescription(dishCategory: String ,dishDescription: String) {
+    Column(modifier = Modifier.padding(24.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = dishCategory,
+            style = MaterialTheme.typography.h5,
+        )
+        Spacer(modifier = Modifier.padding(24.dp))
+        Text(
+            text = dishDescription,
+            style = MaterialTheme.typography.body1,
+        )
+    }
 }
